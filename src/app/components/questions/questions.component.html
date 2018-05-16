@@ -1,0 +1,17 @@
+<h1>Questions</h1>  
+<table class='table'>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Text</th>
+            <th>Difficulty</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let question of questions">
+            <td>{{ question.questionID }}</td>
+            <td>{{ question.questionText }}</td>
+            <td>{{ question.questionDifficulty }}</td>
+        </tr>      
+    </tbody>    
+</table>
