@@ -1,17 +1,80 @@
-<h1>Questions</h1>  
-<table class='table'>
+<div class="col-sm-6">
+   
+        <div class="Row">
+            <div class="form-group">
+                <label>Question:</label>                   
+                <textarea class="form-control" rows="4" id="question"></textarea>          
+            </div>
+        </div>
+       
+ 
+        <label>Select question difficulty:
+            <select>
+                <option name="optionVeryEasy" >Very easy</option>
+                <option name="optionEasy" >Easy</option>
+                <option name="optionNormal" >Normal</option>
+                <option name="optionHard" >Hard</option>
+                <option name="optionVeryHard" >Very Hard</option>
+            </select>
+        </label>
+ 
+        <div class="Row">
+ 
+            <div class="form-group">
+                <label>Answer 1:</label>
+                <textarea class="form-control" rows="2" id="answer1"></textarea>
+            </div>
+        </div>
+ 
+        <div class="Row">
+ 
+            <div class="form-group">
+                <label>Answer 2:</label>
+                <textarea class="form-control" rows="2" id="answer2"></textarea>
+            </div>
+        </div>
+ 
+        <div class="Row">
+ 
+            <div class="form-group">
+                <label>Answer 3:</label>
+                <textarea class="form-control" rows="2" id="answer3"></textarea>
+            </div>
+        </div>
+ 
+        <div class="Row">
+ 
+            <div class="form-group">
+                <label>Answer 4:</label>
+                <textarea class="form-control" rows="2" id="answer4"></textarea>
+            </div>
+        </div>
+       
+        <div class="Row">
+            <input type="submit" class="btn btn-primary" value="Add" [disabled]="!rForm.valid">
+        </div>
+ 
+</div>
+ 
+ 
+ 
+ 
+<div class="col-sm-6">
+ <h1>Questions</h1>  
+<div class="list-group">
     <thead>
         <tr>
-            <th>No</th>
-            <th>Text</th>
-            <th>Difficulty</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let question of questions">
             <td>{{ question.questionID }}</td>
-            <td>{{ question.questionText }}</td>
-            <td>{{ question.questionDifficulty }}</td>
+            <td>{{ question.questionText }}</td>        
         </tr>      
     </tbody>    
-</table>
+</div>
+    <div class="row">
+        <input type="submit" class="btn btn-primary" value="Delete" [disabled]="!rForm.valid">
+    </div>
+ 
+</div>

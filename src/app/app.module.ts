@@ -10,6 +10,13 @@ import { AppComponent } from './app.component';
 import { QuestionsComponent } from './components/questions/questions.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { AuthService } from './services/auth-service.service';
+import { LoggedInGuard } from './logged-in.guard';
+import { SecretComponent } from './components/secret/secret.component';
+
 
 
 @NgModule({
@@ -17,8 +24,13 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     HomePageComponent,
     AppComponent,
     NavMenuComponent,
-    QuestionsComponent
-    
+    QuestionsComponent,
+    SettingsComponent,
+    LoginComponent,
+    LogoutComponent,
+    SecretComponent
+
+
   ],
   imports: [
     BrowserModule,
@@ -26,12 +38,15 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: 'Home', pathMatch: 'full' },
-      { path:'Questions',component:QuestionsComponent },
-      { path:'Home',component:HomePageComponent},
+      { path: 'Home',component:HomePageComponent },
+      { path:'Questions',component:QuestionsComponent,canActivate:[LoggedInGuard]  },
+      { path:'Settings',component:SettingsComponent,canActivate:[LoggedInGuard] },
+      { path:'Login',component:LoginComponent},
+      { path:'Logout',component:LogoutComponent,canActivate:[LoggedInGuard] },
       { path: '**', redirectTo: 'Home' }
     ])
   ],
-  providers: [],  
+  providers: [AuthService,LoggedInGuard],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
