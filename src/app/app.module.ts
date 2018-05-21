@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { Browser } from 'selenium-webdriver';
-import { HttpModule } from '@angular/http';
+import { Http, HttpModule } from '@angular/http';
+
 
 
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { AuthService } from './services/auth-service.service';
 import { LoggedInGuard } from './logged-in.guard';
 import { SecretComponent } from './components/secret/secret.component';
+import { HttpServiceService, ServiceHTTP_PROVIDERS } from './services/hhtp-service/http-service.service';
 
 
 
@@ -33,6 +35,7 @@ import { SecretComponent } from './components/secret/secret.component';
 
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     HttpModule,
     FormsModule,
@@ -46,7 +49,7 @@ import { SecretComponent } from './components/secret/secret.component';
       { path: '**', redirectTo: 'Home' }
     ])
   ],
-  providers: [AuthService,LoggedInGuard],  
+  providers: [AuthService,LoggedInGuard, HttpServiceService, ServiceHTTP_PROVIDERS],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

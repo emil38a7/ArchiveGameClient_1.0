@@ -3,13 +3,13 @@ export class Question {
     questionID : string;
     questionText: string;
     questionDifficulty: string;
-    questionAnswers: Array<{answerID :string,answerText :string,correctAnswer:string}>;
+    questionAnswers: Array<Answer>;
     
-    constructor(questionID : string, questionText:string, questionDifficulty:string, questionAnswers:Array<{answerID:string,answerText:string,correctAnswer:string}>){
+    constructor(questionID : string, questionText:string, questionDifficulty:string, questionAnswers: Array<Answer>){
         this.questionID = questionID;
         this.questionText = questionText;
         this.questionDifficulty = questionDifficulty;
-        this.questionAnswers = Array<{answerID,answerText,correctAnswer}>();
+        this.questionAnswers = questionAnswers;
 
     }
 }
