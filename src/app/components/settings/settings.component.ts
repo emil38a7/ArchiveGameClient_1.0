@@ -14,7 +14,7 @@ export class SettingsComponent implements OnInit {
   users:User[]
   submitted:boolean;
   model = new User('', '', '', '', '');
-
+  roles = ['Admin', 'Super User','Super - Dupper User'];
 
   constructor(http:Http, hService:HttpServiceService) {
     this.submitted = false;
