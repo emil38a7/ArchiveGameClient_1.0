@@ -1,4 +1,4 @@
-export class Players {
+export class Player {
     playerID : string;
     playerNickName: string;
     constructor(playerID : string, playerNickName:string){

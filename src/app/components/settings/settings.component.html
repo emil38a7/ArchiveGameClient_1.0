@@ -41,7 +41,7 @@
 
           <!--User Email-->
           <div class="form-group">
-                <label for="userEmail">Name</label>
+                <label for="userEmail">Email</label>
                 <input class="form-control" type="text" id="userEmail"
                 minlength="10"
                 required
@@ -59,6 +59,26 @@
                   </div>
               </div>
 
+              <!--USer password-->
+              <div class="form-group">
+                <label for="userPassword">Password</label>
+                <input class="form-control" type="text" id="userPassword"
+                minlength="10"
+                required
+                [(ngModel)]="model.userPassword" name="userPassword"
+                #password="ngModel">
+              </div>
+              <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                  class="alert alert-danger">                       
+                  <div *ngIf="password.errors.required">
+                      Password is required.
+                  </div>   
+                  
+                  <div *ngIf="password.errors.minlength">
+                      Password is to short, min 10 characters long.
+                  </div>
+              </div>
+
               <!--User Role-->
          <!--Select difficulty form-->
          <div class="form-group">
@@ -68,10 +88,7 @@
              [(ngModel)]="model.userRole" name="userRole">
                  <option *ngFor="let role of roles" [ngValue]="role" >{{role}}</option>
              </select>
-
          </div>
-
-
       </fieldset>
   </form>
 </div>

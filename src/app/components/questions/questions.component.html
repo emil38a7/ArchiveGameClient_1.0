@@ -6,27 +6,27 @@
 
 <!--Question text form-->
       <div class="form-group">
-        <label for="name">Text</label>
-        <textarea 
-        type="text" class="form-control" id="questionText" required
-        [(ngModel)]="model.questionText" name="questionText"
-        #name="ngModel">
-        </textarea>
-      </div>
-      <div *ngIf="name.invalid && (name.dirty || name.touched)"
-        class="alert alert-danger">                       
-        <div *ngIf="name.errors.required">
-            Question Text is required.
-        </div>   
-        
-        <div *ngIf="name.errors.minlength">
-            Question text is to short,  min 10 characters long.
+          <label for="questionText">Name</label>
+          <input class="form-control" type="text" id="questionText"
+          minlength="10"
+          required
+          [(ngModel)]="model.questionText" name="questionText"
+          #name="ngModel">
         </div>
-      </div>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)"
+            class="alert alert-danger">                       
+            <div *ngIf="name.errors.required">
+                Question Text is required.
+            </div>   
+            
+            <div *ngIf="name.errors.minlength">
+                Question text is to short,  min 10 characters long.
+            </div>
+        </div>
 
 <!--Select difficulty form-->
       <div class="form-group">
-        <label for="difficulty">Question level {{model.questionDifficulty}}</label>
+        <label for="difficulty">Question level</label>
         <select class="form-control"  id="difficulty"
                 required
                 [(ngModel)]="model.questionDifficulty" name="difficulty"
@@ -40,7 +40,12 @@
 <!--Answer 1  form-->
   
         <div class="form-group">
-            <label for="answer">Answer 1</label>
+            <div class="input-group mb-3">
+                <label for="answer">Answer 1</label>
+                <label class="checkbox-inline">
+                    <input type="checkbox">Correct answer
+                </label>
+            </div>
             <input
             type="text" class="form-control" id="answer"  required
             [(ngModel)]="model.questionAnswers[0].answerText" name="answer"
@@ -130,7 +135,7 @@
 
 
 <div class="col-sm-6">
- <legend>List of Questions</legend>  
+<legend>List of Questions</legend>  
 <table class="table">
     <thead>
         <tr>

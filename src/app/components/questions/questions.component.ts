@@ -20,7 +20,7 @@ export class QuestionsComponent {
   formDisable: boolean;
 
 
-  difficulties = ['Verry easy', 'Easy','Hard', 'Very hard'];
+  difficulties = ['very easy', 'easy', 'normal','hard', 'very hard'];
 
   model = new Question('', '', '', [ new Answer('', '', '', ''), new Answer('', '', '', ''),new Answer('', '', '', ''), new Answer('', '', '', '')]);
 

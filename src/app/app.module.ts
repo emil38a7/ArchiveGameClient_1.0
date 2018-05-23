@@ -18,6 +18,7 @@ import { AuthService } from './services/auth-service.service';
 import { LoggedInGuard } from './logged-in.guard';
 import { SecretComponent } from './components/secret/secret.component';
 import { HttpServiceService, ServiceHTTP_PROVIDERS } from './services/hhtp-service/http-service.service';
+import { GameComponent } from './components/game/game.component';
 
 
 
@@ -30,7 +31,8 @@ import { HttpServiceService, ServiceHTTP_PROVIDERS } from './services/hhtp-servi
     SettingsComponent,
     LoginComponent,
     LogoutComponent,
-    SecretComponent
+    SecretComponent,
+    GameComponent
 
 
   ],
@@ -40,12 +42,13 @@ import { HttpServiceService, ServiceHTTP_PROVIDERS } from './services/hhtp-servi
     HttpModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', redirectTo: 'Home', pathMatch: 'full' },
-      { path: 'Home',component:HomePageComponent },
+      { path:'', redirectTo: 'Home', pathMatch: 'full' },
+      { path:'Home',component:HomePageComponent },
       { path:'Questions',component:QuestionsComponent,canActivate:[LoggedInGuard]  },
       { path:'Settings',component:SettingsComponent,canActivate:[LoggedInGuard] },
       { path:'Login',component:LoginComponent},
       { path:'Logout',component:LogoutComponent,canActivate:[LoggedInGuard] },
+      { path:'Game', component:GameComponent, canActivate:[LoggedInGuard] },
       { path: '**', redirectTo: 'Home' }
     ])
   ],
