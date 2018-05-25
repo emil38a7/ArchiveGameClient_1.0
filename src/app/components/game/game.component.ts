@@ -113,8 +113,8 @@ export class GameComponent implements OnInit {
     }
 
     updateQuestion(newQuestion, currentQuestion){
-      console.log("timeout"); 
-      console.log("new question is :" + newQuestion.questionID + " currentQuestion is: " + currentQuestion.questionID)   
+      //console.log("timeout"); 
+      //console.log("new question is :" + newQuestion.questionID + " currentQuestion is: " + currentQuestion.questionID)   
       this.htttpService.updateCurrenQuestion(newQuestion, currentQuestion);
       this.currentQuestion = newQuestion;
     }

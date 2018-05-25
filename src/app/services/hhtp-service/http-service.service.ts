@@ -125,7 +125,6 @@ console.log(this.questionToPost)
 
 updateCurrenQuestion(newQuestion, currentQuestion){
   this.questionToPost = newQuestion;
-  
   this.http.put(this.currentQuestionUrl,this.questionToPost,{params: {questionID :currentQuestion.questionID}} )
     .subscribe(
        (val) => {
