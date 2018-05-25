@@ -4,9 +4,7 @@ import { Question } from '../../models/question.model';
 import { Answer } from '../../models/answer.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { HttpClient,HttpParams } from '@angular/common/http';
-
- 
+import { HttpClient,HttpParams } from '@angular/common/http'; 
 
 @Injectable()
 export class HttpServiceService {
@@ -14,6 +12,7 @@ questionToPost;
 gameToPost;
 questionRelationToPost;
 playerRelationToPost;
+questionToAnswer;
 public resultArray: Question[];
 ;
 url = "http://localhost:3000/question";
@@ -24,6 +23,7 @@ filteredQuestionURL = "http://localhost:3000/questionFiltered"
 postGameURl = "http://localhost:3000/game";
 QuestionRelationUrl = "http://localhost:3000/questionRelation";
 playerRelationUrl = "http://localhost:3000/playerRelation";
+currentQuestionUrl = "http://localhost:3000/currentQuestion";
 
 constructor(private http: Http){
 }
@@ -106,7 +106,40 @@ postPlayerRelation(model){
           console.log("The POST observable is now completed.");
         });
 }
+
+postCurrentQuestion(model){
+this.questionToPost = model;
+console.log(this.questionToPost)
+  this.http.post(this.currentQuestionUrl,this.questionToPost)
+    .subscribe(
+       (val) => {
+          console.log("POST call successful value returned in body", val);
+        },
+        response => {
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+        });
+}
+
+updateCurrenQuestion(newQuestion, currentQuestion){
+  this.questionToPost = newQuestion;
   
+  this.http.put(this.currentQuestionUrl,this.questionToPost,{params: {questionID :currentQuestion.questionID}} )
+    .subscribe(
+       (val) => {
+          console.log("New question" + this.questionToPost.questionID + " current question id " + currentQuestion.questionID)
+          console.log("POST call successful value returned in body", val);
+        },
+        response => {
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+        });
+}
+
 postNewQuestion(model){
   this.questionToPost = model;
   console.log(this.questionToPost)

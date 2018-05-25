@@ -26,7 +26,7 @@ export class LoginComponent {
   onSubmit() { this.submitted = true; }
 
   loginBeta(model){
-    if(!this.authService.loginHTTPService(model,this.calledbackloginstatu)){
+    if(!this.authService.loginHTTPService(model)){
       this.message = 'Incorrect credentials.';
       setTimeout(function() {
         this.message = '';

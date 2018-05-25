@@ -19,12 +19,12 @@ export class AuthService {
     return false;
   }
 
-  loginHTTPService(model, method):string{
+  loginHTTPService(model):string{//add method to paramether
     this.httpService.loginHTTP(model).subscribe(res => {
       if(res==202){
         alert('Yes' + res);
         this.serverStatus = res;
-        method();
+        //method();
         localStorage.setItem('username', model.userPassword);
       } else {
         alert ('No' + res);

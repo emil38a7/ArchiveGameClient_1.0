@@ -5,6 +5,8 @@ import { QuestionRelation } from '../../models/question-relation.model'
 import { Game } from '../../models/game.model'
 import { Player } from '../../models/player.model'
 import { PlayerRelation } from '../../models/player-relation.model';
+import { Answer } from '../../models/answer.model';
+import { timeout } from 'q';
 
 @Component({
   selector: 'app-game',
@@ -17,13 +19,14 @@ export class GameComponent implements OnInit {
   gameLenght = ['2', '5', '10','15', '20'];
   gameModel = new Game('1');
   questionRelationModel = new QuestionRelation('', '');
-  difficultyModel = 'normal';
+  difficultyModel = 'hard';
   lenghtModel = '2';
   filteredQuestions: Question[];
   gameQuestions: Question[] = [];
   randomIndexes = [];
   players:Player[];
   myInterval;
+  currentQuestion:Question = new Question('0', '', '', [new Answer('', '', '', ''), new Answer('', '', '', ''),new Answer('', '', '', ''), new Answer('', '', '', '')]);
 
   constructor(hService:HttpServiceService) {
     this.htttpService = hService;
@@ -85,6 +88,13 @@ export class GameComponent implements OnInit {
       this.players.forEach(element => {
         this.htttpService.postPlayerRelation(new PlayerRelation(element.playerID, this.gameModel.gameID));
       });
+      this.htttpService.postCurrentQuestion(this.currentQuestion);
+    
+      for(let j = 0; j < this.gameQuestions.length; j++){
+        setTimeout(() => {
+          this.updateQuestion(this.gameQuestions[j], this.currentQuestion)}, 20000 * j);
+          //this.currentQuestion=this.gameQuestions[j];
+        }
     }
 
     createGame(gameDifficulty){
@@ -100,6 +110,13 @@ export class GameComponent implements OnInit {
           this.htttpService.postQuestionRelation(new QuestionRelation(element.questionID, this.gameModel.gameID));
         });
       }, error=> console.error(error));    
+    }
+
+    updateQuestion(newQuestion, currentQuestion){
+      console.log("timeout"); 
+      console.log("new question is :" + newQuestion.questionID + " currentQuestion is: " + currentQuestion.questionID)   
+      this.htttpService.updateCurrenQuestion(newQuestion, currentQuestion);
+      this.currentQuestion = newQuestion;
     }
 }
 //push -u origin master
