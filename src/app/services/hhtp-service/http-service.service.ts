@@ -24,6 +24,7 @@ postGameURl = "http://localhost:3000/game";
 QuestionRelationUrl = "http://localhost:3000/questionRelation";
 playerRelationUrl = "http://localhost:3000/playerRelation";
 currentQuestionUrl = "http://localhost:3000/currentQuestion";
+answerRelationUrl = "http://localhost:3000/answerRelation";
 
 constructor(private http: Http){
 }
@@ -139,6 +140,79 @@ updateCurrenQuestion(newQuestion, currentQuestion){
         });
 }
 
+cleanGame(){
+  this.http.delete(this.postGameURl)
+    .subscribe(
+       (val) => {
+          console.log("POST call successful value returned in body", val);
+        },
+        response => {
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+        });
+
+  this.http.delete(this.playerUrl)
+    .subscribe(
+       (val) => {
+          console.log("POST call successful value returned in body", val);
+        },
+        response => {
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+        });
+
+  this.http.delete(this.currentQuestionUrl)
+    .subscribe(
+    (val) => {
+    console.log("POST call successful value returned in body", val);
+    },
+    response => {
+      console.log("POST call in error", response);
+    },
+    () => {
+      console.log("The POST observable is now completed.");
+    });
+
+    this.http.delete(this.QuestionRelationUrl)
+    .subscribe(
+       (val) => {
+          console.log("POST call successful value returned in body", val);
+        },
+        response => {
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+        });
+  this.http.delete(this.playerRelationUrl)
+  .subscribe(
+    (val) => {
+      console.log("POST call successful value returned in body", val);
+    },
+    response => {
+      console.log("POST call in error", response);
+    },
+    () => {
+      console.log("The POST observable is now completed.");
+    });
+
+  this.http.delete(this.answerRelationUrl)
+    .subscribe(
+       (val) => {
+          console.log("POST call successful value returned in body", val);
+        },
+        response => {
+          console.log("POST call in error", response);
+        },
+        () => {
+          console.log("The POST observable is now completed.");
+        });
+}
+
 postNewQuestion(model){
   this.questionToPost = model;
   console.log(this.questionToPost)
@@ -155,6 +229,8 @@ postNewQuestion(model){
         });
     }
 }
+
+
 
 export const ServiceHTTP_PROVIDERS: Array<any> = [
   { provide: HttpServiceService, useClass: HttpServiceService }

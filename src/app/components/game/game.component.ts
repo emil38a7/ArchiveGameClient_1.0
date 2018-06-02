@@ -88,13 +88,14 @@ export class GameComponent implements OnInit {
       this.players.forEach(element => {
         this.htttpService.postPlayerRelation(new PlayerRelation(element.playerID, this.gameModel.gameID));
       });
-      this.htttpService.postCurrentQuestion(this.currentQuestion);
+      //this.htttpService.postCurrentQuestion(this.currentQuestion);
     
       for(let j = 0; j < this.gameQuestions.length; j++){
         setTimeout(() => {
           this.updateQuestion(this.gameQuestions[j], this.currentQuestion)}, 20000 * j);
           //this.currentQuestion=this.gameQuestions[j];
         }
+        //display question page :)
     }
 
     createGame(gameDifficulty){
@@ -109,6 +110,8 @@ export class GameComponent implements OnInit {
         this.gameQuestions.forEach(element => {
           this.htttpService.postQuestionRelation(new QuestionRelation(element.questionID, this.gameModel.gameID));
         });
+
+        this.htttpService.postCurrentQuestion(this.currentQuestion);
       }, error=> console.error(error));    
     }
 
@@ -119,4 +122,4 @@ export class GameComponent implements OnInit {
       this.currentQuestion = newQuestion;
     }
 }
-//push -u origin master
+//git push -u origin master
